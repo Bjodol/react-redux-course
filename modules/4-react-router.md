@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Introduce routing using [_react-router_](https://reactrouter.com/en/main). You will learn how to navigate between pages, handle dynamic routes, and create a separate article page. The need for global state management will also be emphasized. This will in more concrete terms involve adding routing so the `ArticlePreview`-items are clickable. You will also need to create `Article`-page that displays the clicked on article object. This will lead to the introduction of a `pages`-folder to make a more scalable directory. Complete the day by empazising that now using routing the `like`-functionality no longer work - We need to introduce globl state management.
+Introduce routing using [_react-router_](https://reactrouter.com/en/main). You will learn how to navigate between pages, handle dynamic routes, and create a separate article page. The need for global state management will also be emphasized. This will in more concrete terms involve adding routing so the `ArticlePreview`-items are clickable. You will also need to create `Article`-page that displays the clicked on article object. This will lead to the introduction of a `pages`-folder to make a more scalable directory. Complete the module by empazising that now using routing the `like`-functionality no longer work - We need to introduce globl state management.
 
 ---
 

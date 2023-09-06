@@ -219,9 +219,9 @@ export interface ArticleResponse {
 
 Now that we fetch the data from the external backend the like functionality does no longer work. This is because we no longer update the actual article object, only the local cahced version which gets overwritten on every fetch to the backend. Try liking an article the refresh, or like an article in the Article-page then go back to the main page and see the live overwriting.
 
-# Day 5: Realworld.how API - authenticate login
+# Realworld.how API - authenticate login
 
-The goal of Day 5 is to integrate actual API calls for user login/signup with authentication. Here we will make use of browser storage, `localStorage` to store user data throughout the sessions. You will learn to handle requests and responses with authirization and how to setup features that require user-authentication.
+The goal is to integrate actual API calls for user login/signup with authentication. Here we will make use of browser storage, `localStorage` to store user data throughout the sessions. You will learn to handle requests and responses with authirization and how to setup features that require user-authentication.
 
 ---
 
