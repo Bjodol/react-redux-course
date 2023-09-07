@@ -40,7 +40,6 @@ Use the `configureStore` function from redux-toolkit to create your store.
 
 ```jsx
 import { configureStore } from "@reduxjs/toolkit";
-import appReducer from "./appSlice";
 
 const store = configureStore({
   reducer: {
@@ -115,7 +114,7 @@ const store = configureStore({
 
 Now lets fill inn our slice with the application logic needed to enable shared state across our two pages.
 
-- Together with the participants identify how the initialState should look, what state values are needed for the basic logic of keeping the articles updated.
+- Identify how the initialState should look, what state values are needed for the basic logic of keeping the articles updated.
 - Set the inital state once the store structure is defined.
 - Next step, how should the identified state be updated, what oogic is needed to update the state values? Create reducers where necessary to conficgure the state updating logic.
 - Export reducers so they can be used in the files when needed to update the states. (_works as setters, to update the states. Can only contain logic or accept props that can be used in computation of the new value of simply set the new value by updating the entire object or only certain attributes of the stored object._)
@@ -247,14 +246,14 @@ export default Home;
 - Remove article-state.
 - Retrieve article from store using the selectArticle-selector.
 - Set the updated store value using dispatch - loadArticles and loadArticle reducers.
-- Remove the state and useLocation hook, replace it with the useParams hook to retrieve the slug form the url.
+- Remove the state, replace it with the useParams hook to retrieve the slug form the url.
 
 ```jsx
 const dispatch = useDispatch();
 const article = useSelector(selectArticle);
 const { slug } = useParams();
 const [loading, setLoading] = useState<boolean>(false);
-...
+
 useEffect(() => {
     if (!article) {
         setLoading(true);

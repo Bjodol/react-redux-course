@@ -160,8 +160,6 @@ Now your code complains since we have yet to create the article Page component.
 Create a new `Article` folder in the pages folder - holding the `Article.tsx` and `Article.css` files.
 
 - Create an Article page similar to the structure from conduit.
-- since the `article`object could not be passed in as prop since we access the page-component through navigation we need to get the state we passed throught the link. This can be donw by making use of the `useLocation`-hook from react-router.
-- (optional) Add a check to see it there is an article object available.
 
 <details>
 <summary> Suggestion 💡</summary>
@@ -169,11 +167,11 @@ Create a new `Article` folder in the pages folder - holding the `Article.tsx` an
 ```jsx
 import { useLocation } from "react-router-dom";
 import { Article } from "../../types";
+import { articles } from "../../articles";
 import "./Article.css";
 
 const ArticlePage = () => {
-  const { state } = useLocation();
-  const article: Article = state as Article;
+  const article: Article = articles[0];
 
   if (!article) return <div>Loading...</div>;
 
@@ -183,28 +181,28 @@ const ArticlePage = () => {
       <div className="article">
         <div className="header">
           <div className="header-content">
-          <h1>{article.title}</h1>
-          <div className="article-meta">
+            <h1>{article.title}</h1>
+            <div className="article-meta">
               <div className="info">
-              <a href="/">{article.author.username}</a>
-              <span className="subtitle1">
+                <a href="/">{article.author.username}</a>
+                <span className="subtitle1">
                   {new Date(article.createdAt).toLocaleDateString()}
-              </span>
+                </span>
               </div>
               <button className={article.favorited ? "favorited" : ""}>
-              Like {article.favoritesCount}
+                Like {article.favoritesCount}
               </button>
-          </div>
+            </div>
           </div>
         </div>
         <div className="content">
           <p className="text">{article.body}</p>
           <ul className="tag-list">
-          {article.tagList.map((tag, index) => (
+            {article.tagList.map((tag, index) => (
               <li key={`tag-${index}-${tag}`} className="tag">
-              {tag}
+                {tag}
               </li>
-          ))}
+            ))}
           </ul>
         </div>
       </div>
@@ -213,7 +211,6 @@ const ArticlePage = () => {
 };
 
 export default ArticlePage;
-
 ```
 
 ```css
@@ -244,9 +241,8 @@ If a user decides to go directly to the Article-specific page this state wil not
 <summary> Suggestion 💡</summary>
 
 ```jsx
-const { state } = useLocation();
 const { slug } = useParams();
-const [article, setArticle] = useState<Article | null>(state);
+const [article, setArticle] = useState<Article | null>(null);
 const [loading, setLoading] = useState<boolean>(false);
 
 useEffect(() => {
@@ -271,9 +267,9 @@ if (loading || !article) {
 
 </details>
 
-### 6. Identify potential new reusable components and restructures.
+### 6. (Optional) Identify potential new reusable components and restructures.
 
-Together with the students identify structures in the code that are now used multiple places - suggest moving these into their own components.
+Identify structures in the code that are now used multiple places - suggest moving these into their own components.
 
 - The `ArticleMeta`-div is needed now in both `ArticlePreview` and `Article` - create an article meta component to make it reusable.
 - The `TagList`-ul is also needed in both, this could also be moved to its own cmponent.
@@ -402,7 +398,7 @@ export default TagList;
 
 </details>
 
-Note that moving the ArticleMeta elements into it's own component - meaning passing the handle function one more level down the component-tree leads to the Article-page complaining since there is now handle fucntion in that component.
+Note that moving the ArticleMeta elements into it's own component - meaning passing the `handleFavorite` function one more level down the component-tree leads to the Article-page complaining since there is no handle function in that component.
 
 Adding local state here will not solve our issues - adding a lot of code here to fetch the static data and update the state locally will be a messy way to try to sync up our pages states. This motivates the need for introducing and adding global state to the application.
 

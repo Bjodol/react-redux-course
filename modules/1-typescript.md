@@ -1,5 +1,11 @@
 # Typescript
 
+Recommended documentation
+
+- [Getting started](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html)
+- [Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html)
+- [Utility types](https://www.typescriptlang.org/docs/handbook/utility-types.html)
+
 ## Purpose
 
 To provide typesafety to your code.
@@ -94,6 +100,73 @@ type SolarSystem = Planet & { numberOfStars: number };
 4. Create another type `ArticleList` which holds an array of articles.
 5. Create a variable with the type `ArticleList` and populate the variable with three articles.
 
+<details>
+<summary> Suggestion 💡</summary>
+
+```ts
+type Article = {
+  title: string;
+  description: string;
+  rating: number;
+  hasRead: boolean;
+  views: number;
+  publishedAt: string;
+  author: Author;
+};
+
+type Author = {
+  name: string;
+  nickname: string;
+  age: number;
+};
+
+type ArticleList = Article[];
+
+const articles: ArticleList = [
+  {
+    title: "article-1",
+    description: "description-1",
+    rating: 3,
+    hasRead: true,
+    views: 4,
+    publishedAt: "2023-09-06",
+    author: {
+      name: "author-1",
+      nickname: "1",
+      age: 30,
+    },
+  },
+  {
+    title: "article-2",
+    description: "description-2",
+    rating: 3,
+    hasRead: true,
+    views: 4,
+    publishedAt: "2023-09-06",
+    author: {
+      name: "author-2",
+      nickname: "2",
+      age: 30,
+    },
+  },
+  {
+    title: "article-3",
+    description: "description-3",
+    rating: 3,
+    hasRead: true,
+    views: 4,
+    publishedAt: "2023-09-06",
+    author: {
+      name: "author-3",
+      nickname: "3",
+      age: 30,
+    },
+  },
+];
+```
+
+</details>
+
 ## Advanced types [Demo]
 
 ### Generics
@@ -126,8 +199,6 @@ const human: Character<Humanoid> = {
 
 ### Utility types
 
-[Offical documentation](https://www.typescriptlang.org/docs/handbook/utility-types.html);
-
 ```ts
 // Create new type from existing type
 type ForceRobot = Pick<Robot, "powerConsumption"> &
@@ -151,6 +222,20 @@ const statue = { powerConsumption: 42, canFly: false };
 
 1. Create a type `ArticleTeaser` containing a subset of the fields from `Article`.
 2. Make a generic type for a network response which contains a `responseCode` and a `data` payload which can be either `Article` or `ArticleTeaser`.
+
+<details>
+<summary> Suggestion 💡</summary>
+
+```ts
+type ArticleTeaser = Pick<Article, "title" | "rating" | "views">;
+
+type ArticleResponse<G extends Article | ArticleTeaser> = {
+  responseCode: number;
+  data: G;
+};
+```
+
+</details>
 
 ## Bonus task
 

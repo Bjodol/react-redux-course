@@ -600,6 +600,7 @@ As you could see from the previous example the component did not respond to clic
 - Move the handle function to app - pass it down as prop.
 - Create a state using the `useState` hook - use the static articles as initial state
 - Update the handle function to set the state using the hook - update the selected articles object using the previous logic.
+- Display the favorite count and which articles is favorited on the `ArticlePreview`
 
 <details>
 <summary> Suggestion 💡</summary>
@@ -643,15 +644,36 @@ const App = () => {
 
 - Update `ArticlePreview` props to accept the handle function.
 
-```jsx
-interface Props {
-  article: Article;
-  handleFavorite: () => void;
-}
-
-const ArticlePreview = ({ article, handleFavorite }: Props) =>
+```tsx
+export const ArticlePreview = ({ article, handleFavorite }: Props) => {
+  return (
+    <div className="article-preview">
+      <div>
+        <a href="/">{article.author.username}</a>
+        <span className="subtitle1">
+          {new Date(article.createdAt).toLocaleDateString()}
+        </span>
+      </div>
+      <h1>{article.title}</h1>
+      <p className="description">{article.description}</p>
+      <button onClick={() => handleFavorite(article.slug)}>Favorite</button>
+      <span className="subtitle1">Read more...</span>
+      <ul className="tag-list">
+        {article.tagList.map((tag, index) => (
+          <li key={`tag-${index}-${tag}`} className="tag">
+            {tag}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 ```
 
 </details>
 
 Now the like functionality works as expected, incrementing and deceasing on-click and updating css-class accordingly. However if you try to refresh or click the `Home`-link you can see that the state dont persist - the web-page reloads the initial state.
+
+## Bonus task
+
+Create a component for a `AuthorPreview`
