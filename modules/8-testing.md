@@ -1,4 +1,4 @@
-# Day 7: Testing
+# Testing
 
 ## Purpose
 
