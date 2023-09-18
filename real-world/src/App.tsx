@@ -6,39 +6,10 @@ import { MyForm } from "./demo-3-2/form";
 import { MyInputField } from "./demo-3-2/input";
 import { LightSwitch } from "./demo-3-2/on-off";
 import { LightSwitchToggle } from "./demo-3-2/toggle";
+import { MyApp } from "./demo-3-3/ArticleList";
 
 function App() {
-  const [articleList, setArticleList] = useState(articles);
-
-  const onFavorite = (title: string) => {
-    setArticleList((prevArticleList) => {
-      return prevArticleList.map((article) => {
-        if (article.title === title) {
-          return {
-            ...article,
-            favorited: !article.favorited,
-          };
-        } else {
-          return article;
-        }
-      });
-    });
-  };
-
-  return (
-    <div>
-      {articleList.map((article) => {
-        return (
-          <div key={article.slug}>
-            <ArticlePreview {...article} />
-            <button onClick={() => onFavorite(article.title)}>
-              {article.favorited ? "Favorited" : "Not favorited"}
-            </button>
-          </div>
-        );
-      })}
-    </div>
-  );
+  return <MyApp />;
 }
 
 export default App;
