@@ -11,7 +11,7 @@ export type Article = {
   author: Author;
 };
 
-type Author = {
+export type Author = {
   username: string;
   bio: string;
   image: string;
