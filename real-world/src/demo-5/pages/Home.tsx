@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { Article } from "../../types";
 import { ArticlePreview } from "../../demo-3-1/ArticlePreview";
+import { User, getUser } from "../auth";
 
 type ArticleAPI = {
   articles: Article[];
@@ -20,6 +21,15 @@ export const getArticles = async (tag: string) => {
 export const Home: FC = () => {
   const [articleList, setArticleList] = useState<Article[]>([]);
   const [tag, setTag] = useState<string>("");
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      const user = await getUser();
+      setUser(user);
+    };
+    loadUser();
+  }, []);
 
   useEffect(() => {
     const loadArticles = async () => {
@@ -31,6 +41,7 @@ export const Home: FC = () => {
 
   return (
     <div>
+      {user && <img src={user?.image} />}
       <button
         onClick={() => {
           setTag("rerum");
