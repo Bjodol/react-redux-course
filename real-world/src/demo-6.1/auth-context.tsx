@@ -1,5 +1,6 @@
-import { FC, ReactNode, createContext, useState } from "react";
+import { FC, ReactNode, createContext, useReducer } from "react";
 import { User } from "./auth";
+import { authReducer, isLoggedIn } from "./auth-reducer";
 
 export type AuthContexType = {
   isLoggedIn: boolean;
@@ -15,19 +16,22 @@ export const AuthContext = createContext<AuthContexType>({
 export const AuthContexProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [state, setState] = useState<Omit<AuthContexType, "setLogin">>({
-    isLoggedIn: false,
-  });
+  // const [state, setState] = useState<Omit<AuthContexType, "setLogin">>({
+  //   isLoggedIn: false,
+  // });
+
+  const [auth, dispatch] = useReducer(authReducer, {});
 
   return (
     <AuthContext.Provider
       value={{
-        isLoggedIn: state.isLoggedIn,
-        user: state.user,
+        isLoggedIn: isLoggedIn(auth),
+        user: auth.user,
         setLogin: (user: User) => {
-          setState((prev) => {
-            return { ...prev, user: user, isLoggedIn: true };
-          });
+          // setState((prev) => {
+          //   return { ...prev, user: user, isLoggedIn: true };
+          // });
+          dispatch({ type: "login", payload: user });
         },
       }}
     >
