@@ -42,3 +42,4 @@ Some good learning material [react.dev](https://react.dev/learn/scaling-up-with-
 3. Add the `AuthProvider` as the top node of your app.
 4. Update the login form to update the context when a user logs in.
 5. Disable the favorite button if the user isn't logged in by using the hook: `useContext(AuthContext)`;
+6. Create logout functionality for the app.
