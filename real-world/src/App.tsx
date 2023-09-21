@@ -1,5 +1,5 @@
 import "./App.css";
-import { MyApp } from "./demo-7/App";
+import { MyApp } from "./demo-8/App";
 
 function App() {
   return <MyApp />;
