@@ -45,8 +45,9 @@ export const LoginPage: FC = () => {
           // dispatch(login(user));
         }}
       >
-        <label>Email</label>
+        <label htmlFor="email">Email</label>
         <input
+          id="email"
           type="text"
           value={form.email}
           onChange={(event) => {
@@ -58,8 +59,9 @@ export const LoginPage: FC = () => {
             });
           }}
         />
-        <label>Password</label>
+        <label htmlFor="password">Password</label>
         <input
+          id="password"
           type="password"
           value={form.password}
           onChange={(event) => {

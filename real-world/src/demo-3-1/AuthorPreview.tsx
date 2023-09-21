@@ -1,11 +1,12 @@
 import { FC } from "react";
 import { Author } from "../types";
 
-export const AuthorPreview: FC<Author> = ({
+export const AuthorPreview: FC<Author & { onClick: () => void }> = ({
   bio,
   following,
   image,
   username,
+  onClick,
 }) => {
   return (
     <div>
@@ -13,6 +14,7 @@ export const AuthorPreview: FC<Author> = ({
       <p>{bio}</p>
       <img src={image} />
       <p>{following}</p>
+      <button onClick={onClick}>Click</button>
     </div>
   );
 };
