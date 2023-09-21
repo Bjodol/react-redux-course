@@ -43,7 +43,7 @@ test("renders a button with the correct label", () => {
 });
 
 test("calls onClick when the button is clicked", () => {
-  const handleClick = jest.fn();
+  const handleClick = vitest.fn();
   const { getByText } = render(
     <Button label="Click Me" onClick={handleClick} />
   );
@@ -141,20 +141,6 @@ describe("TagList component", () => {
 
 </details>
 
-<details>
-<summary>ArticlePreview.tsx</summary>
-TODO - Add functioning test code
-</details>
-
-<details>
-<summary>ArticleMeta.tsx</summary>
-TODO - Add functioning test code
-</details>
-<details>
-<summary>Header.tsx</summary>
-TODO - Add functioning test code
-</details>
-
 ### 3. Testing pages
 
 Having tested all files in our `components folder`, we can move into the pages folder. Her testing the user flows and interactions is neccessary to ensure expected behvior.
@@ -193,8 +179,3 @@ This command will produce a report showing how much of your code had been covere
 
 - Produce a test coverage report.
 - Add tests for the code not covered.
-
-<details>
-<summary>Suggestion💡</summary>
-TODO - Add relevant test code
-<details>
